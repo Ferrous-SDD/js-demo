@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+
+	<script>
+		
+
+		// var n = parseInt(prompt('input'));
+
+		// 1.求2的n次幂
+		// var res = 1;
+		// for(var count = 0; count < n; count++){
+
+		// 	res *= 2;
+
+		// }
+
+		// alert(res);
+		
+		//2.求n的阶乘
+		// var num = 1;
+		// for(var count = 0; count < (n - 1); count++){
+		// 	num = num * (count + 2);
+		// }
+
+		// alert(num);
+
+
+		//3.计算斐波那契额数列
+		// var a = 1;
+		// var b = 1;
+		// var c = 0;
+		// for(var num = 0; num < (n - 2); num++){
+		// 	if(n === 1 || n === 2){
+		// 		c = 1;
+		// 	}else{
+		// 		c = a + b;
+		// 		a = b;
+		// 		b = c;
+		// 	}
+		// }
+		// console.log(c);
+
+
+		//4.编写一程序，输入一个三位数的正整数，输出时反向输出。如：输入456，输出654。
+
+		// var _hundred = parseInt(n / 100);
+		// var _ten = parseInt((n - _hundred * 100) / 10);
+		// var _one = n - _hundred * 100 - _ten * 10;
+
+		// console.log("反向输出后的值为：" + _one + _ten + _hundred);
+
+		//5.输入a,b,c三个数字，打印出最大的
+		// var a = parseInt(prompt("请输入a的值："));
+		// var b = parseInt(prompt("请输入b的值："));
+		// var c = parseInt(prompt("请输入c的值："));
+
+		// if(a >= b && a >= c){
+		// 	console.log("最大的值为：" + a);
+		// }else if(c >= b && c > a){
+		// 	console.log("最大的值为：" + c);
+		// }else{
+		// 	console.log("最大的值为：" + b);
+		// }
+
+
+		//6.打印出100以内的质数
+		// var count = 0;
+		// for (var i = 1; i < 100; i++){
+
+		// 	for(var j = 1; j <= i; j++){
+		// 		if(i % j === 0){
+		// 			count++;
+		// 		}
+		// 	}
+		// 	if(count === 2){
+		// 		console.log(i + " ");
+		// 	}
+		// 	count = 0;
+		// }
+
+
+
+		// 100以内水仙花数
+		// for(var num = 100;num < 1000;num++){
+		// 	var bai = parseInt(num / 100);
+		// 	var shi = parseInt((num - bai * 100) / 10);
+		// 	var ge = parseInt(num - bai * 100 - shi * 10);
+		// 	if(num === (bai * bai * bai + shi * shi * shi + ge * ge * ge)){
+		// 		console.log("水仙花数：" + num);
+		// 	}
+		// }
+		
+
+		// var _oushu = "";
+		// var _jishu = "";
+		// var _ousum = 0;
+		// var _ounum = 0;
+		// for(var num = 0;num <=100;num++){
+		// 	if(num % 2 === 0){
+		// 		_oushu = _oushu + num + " ";
+		// 		_ousum = _ousum + num;
+		// 		_ounum++;
+		// 	}
+		// 	else{
+		// 		_jishu = _jishu + num + " ";
+		// 	}
+		// }		
+
+		// console.log("偶数有：" + _oushu);
+		// console.log("奇数有：" + _jishu);
+		// console.log("偶数和：" + _ousum);
+		// console.log("偶数数：" + _ounum);
+
+
+		//矩形
+		// for(var i = 1;i <= 5;i++){
+
+		// 	for(var j = 1;j <=5;j++){
+		// 		document.write("*");
+		// 	}
+		// 	document.write("<br/>");
+
+		// }
+
+		//三角
+		//一、
+		// for(var i = 1;i <= 5;i++){
+		// 	for(var j = 1;j <= i;j++){
+		// 		document.write("*");
+		// 	}
+		// 	document.write("<br/>");
+		// }
+
+		//二、
+		// for(var i = 1;i <= 5;i++){
+		// 	for(var j = (6 - i);j > 0;j--){
+		// 		document.write("*");
+		// 	}
+		// 	document.write("<br/>");
+		// }
+
+		//三、
+		// for(var i = 1;i <= 5;i++){
+		// 	for(j = 5 - i;j > 0;j--){
+		// 		document.write("&nbsp;");
+		// 	}
+		// 	for(l = 1;l <= (i * 2 - 1);l++){
+		// 		document.write("*");
+		// 	}
+		// 	document.write("<br/>");
+		// }
+
+		//有一张0.0001米的纸，对折多少次可以达到珠穆朗玛峰的高度8848；
+		// var count = 0;
+		// for(var i = 0.0001;i <=8848;i *= 2){
+		// 	count++;
+		// }
+		// alert(count);
+
+
+		//括号内填加减符号，使等式成立；有几种情况；把加减符号转换成加+1和-1
+
+
+
+		//有一对幼兔，幼兔1个月后长成小兔，小兔1个月后长成成兔并生下一对幼兔，问8个月后有多少对兔子，幼兔、小兔、成兔对数分别是多少。
+		// var _youtu = 1;
+		// var _xiaotu = 0;
+		// var _chengtu = 0;
+		// for(var _month = 0;_month <= 8;_month++){
+		// 	if(_month === 0){
+		// 		_youtu = 1;
+		// 		_xiaotu = 0;
+		// 		_chengtu = 0;
+		// 	}else{
+		// 		_chengtu = _chengtu + _xiaotu;
+		// 		_xiaotu = _youtu;
+		// 		_youtu = _chengtu;
+		// 	}
+			
+		// }
+
+		// console.log("幼兔有：" + _youtu);
+		// console.log("小兔有：" + _xiaotu);
+		// console.log("成兔有：" + _chengtu);
+
+
+
+
+		//循环录入学生成绩，统计分数大于等于80的学生，如果成绩为负数，则提示并不再统计
+		// 方法一
+		// var num = parseInt(prompt("请输入学生的个数"));
+		// var count = 0;
+		// for(var i = 1;i <= num;i++){
+		// 	var score = parseInt(prompt("请输入第" + i + "个学员的成绩："));
+		// 	if(score >= 80){
+		// 		count++;
+		// 	}else if(score < 0){
+		// 		break;
+		// 	}
+		// }
+		// if(i > num){
+		// 	document.write("80分以上人数：" + count);
+		// }else{
+		// 	alert("学员成绩为负数，无法统计");
+		// }
+		
+		// 方法二
+		// var num = parseInt(prompt("请输入学生的个数"));
+		// var count = 0;
+		// var flag = true;
+		// for(var i = 1;i <= num;i++){
+		// 	var score = parseInt(prompt("请输入第" + i + "个学员的成绩："));
+		// 	if(score >= 80){
+		// 		count++;
+		// 	}else if(score < 0){
+		// 		flag = false;//记录你违规操作
+		// 		break;
+		// 	}
+		// }
+		// if(flag){
+		// 	document.write("80分以上人数：" + count);
+		// }else{
+		// 	alert("学员成绩为负数，无法统计");
+		// }
+
+
+		//使用continue求1~10 之间的所有偶数和
+		//方法一：未使用continue
+		// var num = 0;
+		// for(var i = 1;i < 11;i++){
+		// 	if(i % 2 === 0){
+		// 		num = num + i;
+		// 	}
+		// }
+		// document.write("1~10的偶数和为：" + num);
+
+		//方法二：使用continue
+		// var sum = 0;
+		// for(var i = 0;i <= 10;i++){
+		// 	if(i % 2 !== 0){
+		// 		continue;
+		// 	}
+		// 	sum += i;
+		// }
+		// document.write("1~10的偶数和为：" + sum);
+
+
+//有一对兔子，从出生后第3个月起每个月都生一对兔子，小兔子长到第三个月后每个月又生一对兔子，假如兔子都不死，问每个月的兔子总数为多少？
+
+		// var n = parseInt(prompt("input"));
+		// var count = 1;
+		// var sum = 1;
+		// for(i = 1;i <= n;i++){
+			
+		// 	for(var j = 1;j <= i;j++){
+		// 		if(j % 3 === 0){
+		// 		sum = sum + count;
+		// 		count = sum;
+		// 		}
+		// 	}
+		// }
+
+		// console.log(sum);
+
+		
+
+
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+
+	<body>
+		<div id="loading" style="display: none;width: 200px;height: 100px;background: url(img/loading.gif) no-repeat center center;background-size: 100% 100%;position: absolute;top: calc(50% - 50px);left: calc(50% - 100px);"></div>
+		<button id="btn">加载</button>
+		<script src="js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function() {
+
+				$("#btn").click(function() {
+
+					$.ajax({
+						type: "get",
+						url: "data/data.json",
+						//请求之前走
+						beforeSend: function() {
+							$("#loading").show();
+						},
+						//请求完成后，最后走
+						complete: function() {
+							setTimeout(function() {
+								$("#loading").hide();
+							}, 2000)
+						},
+						success: function(data) {
+
+							console.log(data)
+							console.log(data.userlist);
+							data.userlist.forEach(function(item) {
+								$("body").append(`<div class="del">${item}</div>`)
+							})
+						}
+					})
+				})
+
+				$(document).on("click", ".del", function() {
+					alert($(this).html());
+				})
+
+			})
+		</script>
+	</body>
+
+</html>

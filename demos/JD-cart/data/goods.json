@@ -1,0 +1,25 @@
+{
+	"goodsList": [
+		{
+			"id": 100001,
+			"img": "5abb6b5bN151761c1.jpg",
+			"title": "小米MIX2",
+			"price": 2999
+		}, {
+			"id": 100002,
+			"img": "5ad49d67Ndb4f19d0.jpg",
+			"title": "小米MIX3",
+			"price": 1999
+		}, {
+			"id": 100003,
+			"img": "5af4ff97N196116f5.jpg",
+			"title": "小米MIX4",
+			"price": 3888
+		}, {
+			"id": 100004,
+			"img": "5afc18ebN4f52d9b7.jpg",
+			"title": "小米MIX5",
+			"price": 3999
+		}
+	]
+}

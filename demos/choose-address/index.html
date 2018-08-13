@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0px;
+				padding: 0px;
+				list-style: none;
+			}
+			
+			.menu {
+				overflow: hidden;
+				margin: 30px 0px;
+			}
+			
+			.menu li {
+				float: left;
+				width: 60px;
+				text-align: center;
+				border-radius: 3px;
+				margin-left: 20px;
+				height: 30px;
+				line-height: 30px;
+				cursor: pointer;
+			}
+			
+			.menu li:hover {
+				color: #fff;
+				background: mediumpurple;
+			}
+			
+			.active {
+				color: #fff;
+				background: mediumpurple;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<div>
+			您当前选择的是：<span id="xuanzecity">全部</span>+<span id="xuanzetype">全部</span>
+		</div>
+		<ul class="menu city">
+			<li class="active">全部</li>
+			<li>无锡</li>
+			<li>上海</li>
+			<li>合肥</li>
+			<li>北京</li>
+			<li>深圳</li>
+		</ul>
+
+		<ul class="menu type">
+			<li class="active">全部</li>
+			<li>音乐会</li>
+			<li>演唱会</li>
+			<li>戏曲</li>
+			<li>歌剧</li>
+		</ul>
+
+		<script src="jquery-1.7.2.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function() {
+
+				$(".menu li").click(function() {
+
+					//自身加上某class，兄弟都减去某class
+					$(this).addClass("active").siblings().removeClass("active");
+
+					//是否有某样式
+					if($(this).parent().hasClass("city")) {
+						//把某个元素内容清空
+						$("#xuanzecity").empty(); //html("")
+						$("#xuanzecity").append($(this).html());
+					} else {
+						$("#xuanzetype").empty();
+						$("#xuanzetype").append($(this).html());
+					}
+				})
+
+			})
+		</script>
+
+	</body>
+
+</html>

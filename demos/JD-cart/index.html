@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			.goodsItem {
+				width: 300px;
+				border: 1px solid red;
+				margin: 10px;
+				float: left;
+			}
+			
+			.goodsimg {
+				width: 100%;
+				height: 250px;
+				background-size: 100% 100%;
+			}
+			
+			.add {
+				color: red;
+				cursor: pointer;
+			}
+			
+			.add:hover {
+				color: blue;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<div id="container">
+
+		</div>
+
+		<script src="js/pack.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			(function() {
+
+								var obj = {
+									name: 123
+								}
+				
+								//将对象变成字符串
+								var str = JSON.stringify(obj)
+								console.log(str)
+				//				//将字符串变成对象
+				//				var newobj = JSON.parse(str)
+				//				console.log(newobj)
+
+				pack.ajax("data/goods.json", function(data) {
+
+					var goodslist = data.goodsList;
+
+					for(var i = 0; i < goodslist.length; i++) {
+						var goods = pack.create("div");
+						goods.classList.add("goodsItem");
+						pack.byId("container").appendChild(goods);
+
+						var goods_img = pack.create("div");
+						goods_img.classList.add("goodsimg")
+						goods_img.style.backgroundImage = "url(img/" + goodslist[i].img + ")"
+						goods.appendChild(goods_img);
+
+						var goods_title = pack.create("div");
+						goods_title.innerHTML = goodslist[i].title;
+						goods.appendChild(goods_title);
+
+						var goods_price = pack.create("div");
+						goods_price.innerHTML = goodslist[i].price;
+						goods.appendChild(goods_price);
+
+						var goods_add = pack.create("div");
+						goods_add.innerHTML = "<span pack-id='" + goodslist[i].id + "' class='add'>加入购物车</span>";
+						goods.appendChild(goods_add);
+					}
+
+					var adds = pack.byClass("add")
+
+					var obj = null
+
+					for(var i = 0; i < adds.length; i++) {
+						adds[i].onclick = function() {
+
+							var thisid = this.getAttribute("pack-id");
+
+							var iscunzai = false
+
+							//第一次进来，cookie是空的，所以要初始化Obj对象
+							if(pack.getCookie("mygoodsid") === undefined ||
+								pack.getCookie("mygoodsid") === "") {
+
+								obj = {
+									mygoods: []
+								}
+							} else {
+								//cookie中有数据，则转换成obj对象
+								obj = JSON.parse(pack.getCookie("mygoodsid"))
+							}
+
+							//加入之前，先在当前的cookie中找
+							//如果存在过了，则那个商品count++
+							//如果没存在，则push
+							var mygoods = obj.mygoods;
+							for(var j = 0; j < mygoods.length; j++) {
+								if(mygoods[j].id === thisid) {
+									mygoods[j].count++;
+									iscunzai = true;
+									break;
+								}
+							}
+
+							//不存在，则push
+							if(!iscunzai) {
+								obj.mygoods.push({
+									id: thisid,
+									count: 1
+								});
+							}
+
+							pack.setCookie("mygoodsid", JSON.stringify(obj), 60);
+
+							alert("添加到购物车成功")
+							
+							location.href = "gouwuche.html"
+
+						}
+					}
+
+				})
+
+			})()
+		</script>
+
+	</body>
+
+</html>

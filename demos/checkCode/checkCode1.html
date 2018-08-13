@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>canvas绘制</title>
+    <style>
+    #container {
+        position: relative;
+        margin: 50px;
+        width: 200px;
+        height: 38px;
+        border-radius: 5px;
+    }
+
+    #big {
+        width: 100%;
+        height: 100%;
+        background: #ccc;
+        border-radius: 5px;
+    }
+
+    #sma {
+        width: 30px;
+        height: 38px;
+        background: #f0f0f0;
+        position: absolute;
+        top: 0px;
+        left: 0;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, .3);
+        font-size: 12px;
+        text-align: center;
+        line-height: 38px;
+        color: #bbb;
+        cursor: pointer;
+        z-index: 2;
+        border-radius: 5px;
+    }
+
+    #progress {
+        background: lightgreen;
+        height: 38px;
+        width: 0px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        text-align: center;
+        font-size: 12px;
+        color: #999;
+        line-height: 38px;
+        border-radius: 5px;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div id="big"></div>
+        <div id="sma">>></div>
+        <div id="progress"></div>
+    </div>
+</body>
+<script>
+var small = document.getElementById("sma");
+var pro = document.getElementById("progress");
+var cont = document.getElementById("container");
+
+var canmove = false;
+var issuccess = false;
+small.onmousedown = function(e) {
+    canmove = true;
+}
+window.onmouseup = function() {
+    canmove = false;
+    if(!issuccess)
+    small.style.left = 0 + "px";
+}
+cont.onmouseleave = function() {
+    canmove = false;
+}
+
+cont.onmousemove = function(e) {
+    if (canmove && !issuccess) {
+        var left = e.pageX - cont.offsetLeft;
+        var len = cont.offsetWidth - small.offsetWidth;
+        small.style.left = left + "px";
+        
+        console.log(left)
+        if (left >= len - 20) {
+            left = len;
+            small.style.left = left + "px";
+            pro.style.width = small.offsetLeft + "px";
+            pro.innerHTML = "验证成功！"
+            issuccess = true;
+        }
+    }
+}
+</script>
+
+</html>

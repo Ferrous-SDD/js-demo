@@ -1,0 +1,49 @@
+* {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+
+#pager-container {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+#pager-container li {
+	border: 1px solid darkolivegreen;
+	color: darkolivegreen;
+	border-radius: 3px;
+	width: 30px;
+	height: 30px;
+	-webkit-user-select: none;
+	text-align: center;
+	line-height: 30px;
+	margin: 0px 2px;
+	cursor: pointer;
+}
+
+#pager-container li:hover {
+	background: darkolivegreen;
+	color: #fff;
+}
+
+#pager-container li.pageindex.active {
+	background: darkolivegreen;
+	color: #fff;
+}
+
+#pager-container li.ctrl {
+	width: 60px;
+}
+
+#pager-container li.disabled {
+	border: 1px solid darkgrey;
+	color: darkgrey;
+	cursor: not-allowed;
+}
+
+#pager-container li.disabled:hover {
+	background: #fff;
+	border: 1px solid darkgrey;
+	color: darkgrey;
+}

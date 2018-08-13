@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>todolist</title>
+    <style>
+    #app {
+        width: 350px;
+        margin: 30px auto;
+        background: #eee;
+        padding: 30px 50px;
+    }
+    li{
+    	list-style: none;
+    }
+    ul{
+    	padding-left: 0;
+    }
+
+    .add{
+    	width:200px;
+    	height: 20px;
+    	margin-right: 10px;
+    }
+    .span1{
+    	color: skyblue;
+    }
+
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <h1>任务列表</h1>
+        <p>任务总数: 10;还有: 3未完成; 【<span class="span1">完成</span>】 </p>
+        <ul>
+            <li v-for="item in arr">
+                <input type="checkbox">
+                <span>{{item}}</span>
+            </li>
+        </ul>
+        <input type="text" class="add">
+        <button>添加</button>
+    </div>
+
+    <script src="vue.js"></script>
+    <script>
+    	var vm = new Vue({
+    		el: "#app",
+    		data: {
+    			arr: [
+    				'设计',
+    				'编写页面代码',
+    				'编写js代码',
+    				'设计产品原型'
+    			]
+    		}
+    	})
+
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>抽奖</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		div{
+			width: 150px;
+			height: 60px;
+			background-color: #f40;
+			border-radius: 10px;
+			text-align: center;
+			line-height: 60px;
+			margin: 0 auto;
+			margin-top: 10px;
+			color: #fff;
+			cursor: pointer;
+		}
+		div:hover{
+			background-color: #f66;
+		}
+		div:active{
+			background-color: #c64;
+		}
+		.jp{
+			background-color: #999;
+		}
+		.jp:hover{
+			background-color: #aaa;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="cj">抽奖</div>
+	<div class="jp">奖品</div>
+
+	<script>
+		(function(){
+			var cj = document.getElementsByClassName("cj")[0];
+			var jp = document.getElementsByClassName("jp")[0];
+			arr = ["斧头","电脑","手机","妹子","田螺","板砖","菜刀","心想事成"];
+			var isRunning = false;
+			var time;
+			cj.onclick = function(){
+				if(isRunning === false){
+					time = setInterval(function(){
+						var rnd = Math.floor(Math.random() * arr.length);
+						jp.innerHTML = arr[rnd];
+					},20)
+					isRunning = true;
+				}else{
+					clearInterval(time);
+					isRunning = false;
+				}
+
+			}
+			
+
+
+
+
+		})()
+	</script>
+</body>
+</html>

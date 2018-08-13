@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>三级联动</title>
+	</head>
+
+	<body>
+
+		<h1>三级联动</h1>
+		
+		
+		省：
+		<select id="sheng" name="省">
+			<option value="请选择">请选择</option>
+		</select>
+		市：
+		<select id="shi" name="市">
+			<option value="请选择">请选择</option>
+		</select>
+		区/县：
+		<select id="qu" name="区/县">
+			<option value="请选择">请选择</option>
+		</select>
+
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		<script type="text/javascript">
+			var shengs = [{
+				id: "3",
+				name: "江苏"
+			}, {
+				id: "5",
+				name: "浙江"
+			}, {
+				id: "6",
+				name: "安徽"
+			}]
+
+			var shis = [{
+				id: "30",
+				name: "南京"
+			}, {
+				id: "31",
+				name: "苏州"
+			}, {
+				id: "32",
+				name: "无锡"
+			}, {
+				id: "50",
+				name: "杭州"
+			}, {
+				id: "51",
+				name: "湖州"
+			}, {
+				id: "52",
+				name: "嘉兴"
+			}, {
+				id: "60",
+				name: "黄山"
+			}, {
+				id: "61",
+				name: "芜湖"
+			}]
+
+			var qus = [{
+				id: "301",
+				name: "鼓楼区"
+			}, {
+				id: "302",
+				name: "雨花台区"
+			}, {
+				id: "303",
+				name: "秦淮区"
+			}, {
+				id: "311",
+				name: "姑苏区"
+			}, {
+				id: "312",
+				name: "吴中区"
+			}, {
+				id: "313",
+				name: "吴江区"
+			}, {
+				id: "321",
+				name: "新吴区"
+			}, {
+				id: "322",
+				name: "南长区"
+			}, {
+				id: "323",
+				name: "崇安区"
+			}]
+
+			for(let sheng of shengs) {
+				$('#sheng').append(`<option value="${sheng.id}">${sheng.name}</option>`)
+			}
+
+			$('#sheng').change(function() {
+				$('#shi').html(`<option value="请选择">请选择</option>`)
+				$('#qu').html(`<option value="请选择">请选择</option>`)
+				for(let shi of shis) {
+					if(shi.id.indexOf($('#sheng').val()) === 0)
+					$('#shi').append(`<option value="${shi.id}">${shi.name}</option>`)
+				}
+			})
+			$('#shi').change(function() {
+				$('#qu').html(`<option value="请选择">请选择</option>`)
+				for(let qu of qus) {
+					if(qu.id.indexOf($('#shi').val()) === 0)
+					$('#qu').append(`<option value="${qu.id}">${qu.name}</option>`)
+				}
+			})
+			
+			
+		</script>
+	</body>
+
+</html>

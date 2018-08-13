@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0px;
+				padding: 0px;
+				list-style: none;
+			}
+			
+			#contaienr li {
+				height: 30px;
+				line-height: 30px;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<ul id="container" style="width: 500px;height: 600px;border:1px solid red;margin: 100px auto;">
+
+		</ul>
+
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		<script type="text/javascript">
+			
+			//排序方法，因为每次移动后都要重新排序
+			var setOrder = () => {
+				$(".up").remove()
+				$(".down").remove()
+
+				$("#container li").each((i, item) => {
+
+					$(item).find('.orderid').text((i + 1) + ".")
+
+					if(i > 0) {
+						$(item).append(`<button class='up'>上移</button>`)
+					}
+					if(i < arr.length - 1) {
+						$(item).append(`<button class='down'>下移</button>`)
+					}
+				})
+			}
+
+			//生成数据
+			var arr = ["这是一条大新闻", "你们这些年轻人", "总想搞点事情", "写代码能挣到钱吗", "房子都没有还装逼"]
+			arr.forEach((item) => {
+				$("#container").append(`
+					<li>
+						<span class="orderid"></span>
+						${item}
+					</li>
+				`)
+			})
+			setOrder()
+
+			//点击时切换，因为最终肯定是AJAX动态加载的数据，所以要用on
+			$("#container").on("click", ".up", function() {
+				$(this).parent().prev().before($(this).parent())
+				setOrder()
+			})
+
+			$("#container").on("click", ".down", function() {
+				$(this).parent().next().after($(this).parent())
+				setOrder()
+			})
+		</script>
+	</body>
+
+</html>

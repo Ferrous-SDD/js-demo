@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/pager.css" />
+	</head>
+
+	<body>
+
+		<div id="container">
+		</div>
+
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		<script src="js/pager.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function() {
+
+//				function loaddata(pageindex) {
+//					$.get("xxx", {
+//						pageindex: pageindex
+//					}, function(data) {
+//
+//					})
+//				}
+//
+//				loaddata(1)
+
+				$.pager({
+					container: "#container",
+					pagecount: 8,
+					jump: function(pageindex) {
+						loaddata(pageindex)
+					}
+				})
+
+			})
+		</script>
+
+	</body>
+
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.active{
+			background-color: orangered;
+			font-size: 20px;
+			color: #fff;
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+		
+
+		<input type="text" v-model="msg">
+		<h2>v-once</h2>
+		<p v-once>初始的:{{msg}}</p>		<!-- v-once:不改变的值 -->		
+		<p>改变的:{{msg}}</p>
+		
+		<hr>
+		<h2>v-if</h2>
+		<p v-if="show">要显示出来</p>
+		<p v-if="hide">不要显示出来</p>
+		<p v-if="height > 1.55">小明的身高:{{height}}</p>
+		<p v-if="height1 > 1.55">小红的身高:{{height1}}</p>
+		<p v-if="1">小红的身高:{{height1}}</p>
+		
+		<hr>
+		<h2>v-show</h2>
+		<p v-show="show">要显示出来</p>
+		<p v-show="hide">不要显示出来</p>
+		<p v-show="height > 1.55">小明的身高:{{height}}</p>
+		<p v-show="height1 > 1.55">小红的身高:{{height1}}</p>
+		<p v-show="1">小红的身高:{{height1}}</p>
+
+		<hr>
+		<h2>v-else</h2>
+		<p v-if="height1 > 1.6">小红的身高:{{height1}}</p>
+		<p v-else>小红的身高不足1.6m</p>
+
+		<hr>
+		<h2>v-else-if</h2>
+		<p>输入的成绩对应的等级是:</p>
+		<p v-if="score >= 90">优秀</p>
+		<p v-else-if="score >= 75">良好</p>
+		<p v-else-if="score >= 60">及格</p>
+		<p v-else>不及格</p>
+		<input type="text" v-model="score">
+
+		<hr>
+		<h2>v-for</h2>
+		<p v-for="(score,index) in scores">
+			{{index + ':' + score}}
+		</p>
+		<p v-for="(item,prop) in dog">
+			{{prop + ':' + item}}
+		</p>
+		<p v-for="(str,index) in name">
+			{{index + ':' + str}}
+		</p>
+		<p v-for="(num,index) in phone">
+			{{index + ':' + num}}
+		</p>
+
+		<hr>
+		<h2>v-for示例</h2>
+		<table style="width: 600px;border: 2px solid orangered">
+			<thead style="background: orangered;">
+				<tr>
+					<td>姓名</td>
+					<td>年龄</td>
+					<td>性别</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr v-for="p in persons">
+					<td>{{p.name}}</td>
+					<td>{{p.age}}</td>
+					<td>{{p.sex}}</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<hr>
+		<h2>v-text,v-html</h2>
+		<p>{{msg}}红红火火恍恍惚惚</p>
+		<p v-text="msg">	<!-- 标签内文本无用 -->
+			哈哈哈哈哈
+		</p>
+
+		<p v-html="html">	<!-- 标签内文本无用 -->
+			红红火火恍恍惚惚
+			<input type="text">
+		</p>
+		
+		<hr>
+		<h2>v-bind</h2>
+		<img v-bind:src="imgSrc" width="100px" :alt="alt">
+		<img :src="imgSrc1" width="100px" :alt="alt">
+
+		<hr>
+		<h2>v-bind补充</h2>
+		<p v-for="(item,index) in colleges" :class="index === activeIndex? 'active' : ''">
+			{{item}}
+		</p>
+
+		<p :style="{color: fontColor,fontSize: fontSize}">今天天气很好</p>
+
+		<hr>
+		<h2>v-on</h2>
+		<p :style="{color: fontColor}">{{msg}}</p>
+		<button v-on:click="msg = '今天好热啊！'">改变内容</button>
+		<button @click="changeContent()">改变内容1</button>
+		<button @click="changeContentColor()">改变颜色</button>
+
+
+	</div>
+	
+
+
+
+	<script src="../../../package/vue.js"></script>
+	<script>
+		var vm = new Vue({
+			el: '#app',
+			data: {
+				msg: '今天天气很好！',
+				html: '<input type="date"></input><input type="color"></input>',
+
+				show: true,
+				hide: false,
+
+				height: 1.68,
+				height1: 1.50,
+
+				score: 90,	//优秀 良好 及格 不及格
+
+				scores: [100,87,88,80],
+				dog: {name: 'haha',age: 6, height: 1.2},
+				name: 'zhangsan',
+				phone: '199998288281',
+
+				persons: [
+					{name: 'Robin',age: 18,sex: 'female'},
+					{name: 'Ferrous',age: 25,sex: 'male'},
+					{name: 'Roger',age: 45,sex: 'male'},
+					{name: 'Shanks',age: 36,sex: 'male'},
+				],
+
+				imgSrc: "../../bigger/1.jpg",
+				imgSrc1: "../../bigger/2.jpg",
+				alt: '这是图片',
+
+				colleges: [
+					"yzUniversity",
+					"szUniversity",
+					"njUniversity",
+					"qhUniversity",
+					"bjUniversity"
+				],
+				activeIndex: 2,
+				fontColor: 'red',
+				fontSize: '30px'
+			},
+			methods: {//实例的所有函数实现
+				changeContent() {
+					// alert(0);
+					this.msg = '测试改掉没有';
+				},
+				changeContentColor() {
+					this.fontColor = 'green';
+				}
+			}
+		})
+
+
+	</script>
+</body>
+</html>

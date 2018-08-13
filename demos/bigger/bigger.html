@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>淘宝/京东放大镜效果</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+		.wrapper{
+			margin: 150px 500px;
+		}
+		.small{
+			width: 300px;
+			height: 300px;
+			background: url(0.jpg) no-repeat center center;
+			background-size: 100% 100%;
+			position: relative;
+			cursor: move;
+		}
+		.big{
+			width: 500px;
+			height: 500px;
+			position: absolute;
+			background: url(0.jpg) no-repeat center center;
+			display: none;
+		}
+		.wrapper ul{
+			overflow: hidden;
+		}
+		.wrapper ul li{
+			width: 50px;
+			height: 50px;
+			float: left;
+			margin-left: 8px;
+			margin-top: 20px;
+			border: 2px solid transparent;
+			
+		}
+		.wrapper ul li.fir{
+			margin-left: 0;
+			border: 2px solid #f40;
+		}
+		#d0{
+			background: url(0.jpg) no-repeat center center;
+			background-size: 100% 100%;
+		}
+		#d1{
+			background: url(1.jpg) no-repeat center center;
+			background-size: 100% 100%;
+		}
+		#d2{
+			background: url(2.jpg) no-repeat center center;
+			background-size: 100% 100%;
+		}
+		#d3{
+			background: url(3.jpg) no-repeat center center;
+			background-size: 100% 100%;
+		}
+		#d4{
+			background: url(4.png) no-repeat center center;
+			background-size: 100% 100%;
+		}
+		.shadow{
+			width: 200px;
+			height: 200px;
+			position: absolute;
+			background-color: yellow;
+			opacity: 0.5;
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrapper">
+		<div class="small">
+			<div class="shadow"></div>
+		</div>
+		<ul>
+			<li id="d0" class="fir"></li>
+			<li id="d1"></li>
+			<li id="d2"></li>
+			<li id="d3"></li>
+			<li id="d4"></li>
+		</ul>
+	</div>
+	<div class="big"></div>
+	<script>
+		(function(){
+			var small = document.getElementsByClassName("small")[0];
+			var big = document.getElementsByClassName("big")[0];
+			
+			var arrImg = ["0.jpg","1.jpg","2.jpg","3.jpg","4.png"];
+			var shadow = document.getElementsByClassName("shadow")[0];
+
+			//轮播
+			var i = 0;
+			setInterval(function(){
+
+				small.style.backgroundImage = "url(" + arrImg[i] + ")";
+				
+
+				var pre;
+				if(i === 0){
+					pre = arrImg.length - 1;
+				}else{
+					pre = i - 1;
+				}
+
+				var sp1 = document.getElementById("d" + pre);
+				sp1.style.borderColor = "transparent";
+
+				var sp = document.getElementById("d" + i);
+				sp.style.borderColor = "#f40"; 
+				
+
+
+
+				//放大镜
+				big.style.left = small.offsetLeft + small.offsetWidth + 10 + "px";
+				big.style.top = small.offsetTop + "px";
+
+				big.style.backgroundImage = "url(" + arrImg[i] + ")";
+
+				var img = new Image();
+				img.src = arrImg[i];
+				small.onmouseout = function(e){
+					big.style.display = "none";
+					shadow.style.display = "none";
+				}
+
+				small.onmousemove = function(e){
+					big.style.display = "block";
+
+					var sx = e.x - small.offsetLeft;
+					var sy = e.y - small.offsetTop;
+
+					xpercent = sx/small.offsetWidth;
+					ypercent = sy/small.offsetHeight;
+
+					var bigx = (img.width - big.offsetWidth) * xpercent;
+					var bigy = (img.height - big.offsetHeight) * ypercent;
+
+					big.style.backgroundPositionX = - bigx + "px";
+					big.style.backgroundPositionY = - bigy + "px";
+
+
+				//阴影
+				
+				shadow.style.display = "block";
+					var shadowx = sx - 100;
+					var shadowy = sy - 100;
+
+					if(shadowx < 0){
+						if(shadowy < 0){
+							shadow.style.left = 0 + "px";
+							shadow.style.top = 0 + "px";
+						}else if((shadowy + 200) > small.offsetHeight){
+							shadow.style.left = 0 + "px";
+							shadow.style.top = small.offsetHeight - 200 + "px";
+						}else{
+							shadow.style.left = 0 + "px";
+							shadow.style.top = shadowy + "px";
+						}
+					}else if((shadowx + 200) > small.offsetWidth){
+						if(shadowy < 0){
+							shadow.style.left = small.offsetWidth - 200 + "px";
+							shadow.style.top = 0 + "px";
+						}else if(shadowy + 200 > small.offsetHeight){
+							shadow.style.left = small.offsetWidth - 200 + "px";
+							shadow.style.top = small.offsetHeight - 200 + "px";
+						}else{
+							shadow.style.left = small.offsetWidth - 200 + "px";
+							shadow.style.top = shadowy + "px";
+						}
+					}else{
+						if(shadowy < 0){
+							shadow.style.left = shadowx + "px";
+							shadow.style.top = 0 + "px";
+						}else if(shadowy + 200 > small.offsetHeight){
+							shadow.style.left = shadowx + "px";
+							shadow.style.top = small.offsetHeight - 200 + "px";
+						}else{
+							shadow.style.left = shadowx + "px";
+							shadow.style.top = shadowy + "px";
+						}
+					}
+				}
+
+
+
+				i++;
+
+				if(i === arrImg.length){
+					i = 0;
+				}
+
+
+
+				//点击
+				for(var j = 0;j < 5;j++){
+					(function(j){
+						var li = document.getElementById("d" + j);
+						var allLi = document.getElementsByTagName("li");
+						li.onclick = function(e){
+							small.style.background = "url(" + arrImg[j] + ")";
+							small.style.backgroundSize = "100% 100%";
+							for(var z = 0;z < 5;z++){
+								allLi[z].style.borderColor = "transparent";
+							}
+							li.style.borderColor = "#f40";
+							i = j;
+						}
+					})(j)
+				}
+			},2000)
+
+
+
+		})()
+	</script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<audio id="player"></audio>
+
+		<button onclick="play()">播放</button>
+		<button onclick="pause()">暂停</button>
+		<button onclick="prev()">上一曲</button>
+		<button onclick="next()">下一曲</button>
+		<span id="song"></span>
+		<span id="dqsj">00:00</span>/
+		<span id="zsj"></span>
+		
+		<div style="margin: 100px;height: 10px;position: relative;width: 500px;background-color: black;">
+			<div id="progressbar" style="transition: 1s;position: absolute;height: 10px;width: 0px;background-color: red;"></div>
+			<div id="progressbtn" style="margin-top: -3px;transition: 1s;position: absolute;left: -8px;height: 16px;width: 16px;background-color: lightseagreen;"></div>
+		</div>
+
+		<script type="text/javascript">
+			var arr = ["better man.mp3", "California hotel.mp3", "Simon & Garfunkel-Sound Of Silence.mp3"];
+
+			var player = document.getElementById("player");
+			var song = document.getElementById("song");
+			var zsj = document.getElementById("zsj");
+			var dqsj = document.getElementById("dqsj");
+			var progressbar = document.getElementById("progressbar");
+			
+			var index = 0;
+			player.src = "mp3/" + arr[index];
+
+			//加载完成，准备好了，可以放了
+			player.oncanplay = function() {
+				song.innerHTML = arr[index].replace(/.mp3/g,"")
+				zsj.innerHTML = covert(Math.round(player.duration));
+				setInterval(function() {
+					dqsj.innerHTML = covert(Math.round(player.currentTime));
+					
+					progressbar.style.width = (player.currentTime * 100 / player.duration).toFixed(2) + "%";
+					progressbtn.style.left = (player.currentTime * 100 / player.duration).toFixed(2) + "%";
+				},1000)
+			}
+			
+			function buling(num) {
+				if(num < 10) {
+					return "0" + num;
+				}else{
+					return num;
+				}
+			}
+			
+			function covert(miao) {
+				
+				if(miao < 60) {
+					return "00:" + buling(miao);
+				}else{
+					var fen = Math.floor(miao/60);
+					miao = miao - fen * 60;
+					return buling(fen) + ":" + buling(miao);
+				}
+				
+			}
+			
+			function next() {
+				index++;
+				if(index === arr.length) {
+					index = 0;
+				}
+				player.src = "mp3/" + arr[index];
+				player.play();
+			}
+			
+			function prev() {
+				index--;
+				if(index < 0) {
+					index = arr.length - 1;
+				}
+				player.src = "mp3/" + arr[index];
+				player.play();
+			}
+
+			function play() {
+				player.play();
+			}
+			
+			function pause() {
+				player.pause();
+			}
+		</script>
+	</body>
+
+</html>

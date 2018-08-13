@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="../to-do-list/vue.js"></script>
+	<script src="https://cdn.bootcss.com/vue-resource/1.5.1/vue-resource.min.js"></script>
+</head>
+<body>
+	
+
+	<div id="app">
+		<h1>{{name | hello | currency}}</h1>
+		<button @click="search">search</button>
+
+	</div>
+
+
+
+	
+	<script>
+		//定义过滤器
+		Vue.filter('hello',function(val) {
+			return 'hello,' + val;
+		})
+
+		// 过滤器调用
+		// 数据 | 过滤
+
+		Vue.filter('currency',function(val) {
+			return '$$$' + val;
+		})
+
+		var vm = new Vue({
+			el: "#app",
+			data: {
+				name: "lily"
+			},
+			//钩子函数书写的位置，和data、methods等配置项同级
+			beforeCreate() {
+				console.group('beforeCreate~~~~~~~~~~~~~~~');
+				console.log('el:' + this.$el);
+				console.log('data:' + this.$data);
+				console.log('name:' + this.name);
+				console.log('methods:' + this.$methods);
+			},
+			created() {
+				console.group('created~~~~~~~~~~~~~~~');
+				console.log('el:' + this.$el);
+				console.log('data:' + this.$data);
+				console.log('name:' + this.name);
+				console.log('methods:' + this.$methods);
+			},
+			beforeMount() {
+				console.group('beforeMount~~~~~~~~~~~~~~~');
+				console.log('el:' + this.$el);
+				console.log('data:' + this.$data);
+				console.log('name:' + this.name);
+				console.log('methods:' + this.$methods);
+			},
+			mounted() {
+				console.group('mounted~~~~~~~~~~~~~~~');
+				console.log('el:' + this.$el);
+				console.log('data:' + this.$data);
+				console.log('name:' + this.name);
+				console.log('methods:' + this.$methods);
+			},
+			beforeUpdate() {
+				console.group('beforeUpdate~~~~~~~~~~~~~~~');
+				console.log('el:' + this.$el);
+				console.log('data:' + this.$data);
+				console.log('name:' + this.name);
+				console.log('methods:' + this.$methods);
+			},
+			updated() {
+				console.group('updated~~~~~~~~~~~~~~~');
+				console.log('el:' + this.$el);
+				console.log('data:' + this.$data);
+				console.log('name:' + this.name);
+				console.log('methods:' + this.$methods);
+			},
+			beforeDestroy() {
+				console.group('beforeDestroy~~~~~~~~~~~~~~~');
+				console.log('el:' + this.$el);
+				console.log('data:' + this.$data);
+				console.log('name:' + this.name);
+				console.log('methods:' + this.$methods);
+			},
+			destroyed() {
+				console.group('destroyed~~~~~~~~~~~~~~~');
+				console.log('el:' + this.$el);
+				console.log('data:' + this.$data);
+				console.log('name:' + this.name);
+				console.log('methods:' + this.$methods);
+			},
+			
+
+			methods: {
+				search() {
+					//get 请求
+					this.$http.get('url',{
+						params: {a: 3,b: 2}
+					}).then(function(res) {
+						console.log('success');
+						console.log(res.data)
+					},function(res) {
+						console.log('lose');
+						console.log(res.status);
+					})
+
+					// post 请求
+					// this.$http.post('url',{
+					// 	a: 1,b: 2...
+					// },{
+					// 	emulateJSON: true
+					// }).then(function(res) {
+					// 	console.log(res.data)
+					// },fucntion(res) {
+					// 	console.log(res.status);
+					// })
+
+					//jsonp 请求
+					// this.$http.jsonp('url',{
+					// 	params: {a: 1,b: 2}
+					// },{emulateJSON: true}).then(function(res) {
+					// 	'处理请求成功的情况'
+					// },function(res) {
+					// 	'处理请求失败的情况'
+					// })
+				}
+
+				
+
+			}
+		})
+	</script>
+</body>
+</html>

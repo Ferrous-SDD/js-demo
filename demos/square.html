@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>方块移动</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.demo{
+			width: 30px;
+			height: 30px;
+			background-color: red;
+			position: absolute;
+		}
+	</style>
+</head>
+<body>
+	<div class="demo"></div>
+	<script>
+		(function(){
+
+			var demo = document.getElementsByClassName("demo")[0];
+
+			demo.onclick = function(e){
+				console.log("单击");
+			}
+			demo.ondblclick = function(e){
+				console.log("双击");
+			}
+			demo.onmouseup = function(e){
+				console.log("鼠标按下");
+			}
+			demo.onmousedown = function(e){
+				console.log("鼠标抬起");
+			}
+			demo.onmouseover = function(e){
+				console.log("鼠标悬浮");
+			}
+			demo.onmouseout = function(e){
+				console.log("鼠标离开");
+			}
+			demo.onmousemove = function(e){
+				console.log("鼠标移动");
+			}
+
+			window.onkeydown = function(e){
+				console.log(e.keyCode);
+				switch(e.keyCode){
+					case 38:
+						demo.style.top = (demo.offsetTop - 10) + "px";
+						break;
+					case 40:
+						demo.style.top = (demo.offsetTop + 10) + "px";
+						break;
+					case 37:
+						demo.style.left = (demo.offsetLeft - 10) + "px";
+						break;
+					case 39:
+						demo.style.left = (demo.offsetLeft + 10) + "px";
+						break;
+				}
+			}
+
+
+			
+		})()
+	</script>
+</body>
+</html>

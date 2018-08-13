@@ -1,0 +1,144 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+.startPage{
+	width: 100%;
+	z-index: 999;
+	height: 650px;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+.startBtn{
+	width: 180px;
+	height: 80px;
+	cursor: pointer;
+	background-color: blue;
+	text-align: center;
+	line-height: 80px;
+	border-radius: 10px;
+	color: #fff;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	margin: auto;
+}
+.wrapper{
+	width: 100%;
+	height: 650px;
+	position: relative;
+	background-color: #999;
+}
+.left-side{
+	width: 24%;
+	position: absolute;
+	height: 650px;
+}
+.left-side .begin{
+	display: none;
+	margin-left: 50px;
+	margin-top: 50px;
+	width: 50px;
+	height: 30px;
+	border-radius: 5px;
+	background: green;
+	color: #fff;
+	line-height: 30px;
+	text-align: center;
+	cursor: pointer;
+}
+.main{
+	position: absolute;
+	left: 25%;
+	width: 50%;
+	height: 90%;
+}
+.header{
+	width: 100%;
+	height: 80px;
+	text-align: center;
+}
+.score{
+	line-height: 80px;
+	color: #fff;
+	font-size: 20px;
+	font-weight: bolder;
+}
+
+.content{
+	position: absolute;
+	width: 79.5%;
+	height: 50%;
+	left: 10%;
+	top: 30%;
+	border: 10px solid #f40;
+}
+
+.loser{
+	display: none;
+	position: absolute;
+	width: 100%;
+	height: 650px;
+	top: 0;
+	left: 0;
+}
+.con{
+	width: 180px;
+	height: 100px;
+	/*text-align: center;*/
+	background-color: yellow;
+	position: absolute;
+	margin: auto;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	border-radius: 15px;
+	box-sizing: border-box;
+	padding-top: 20px;
+	padding-left: 20px;
+	font-weight: bolder;
+}
+.loserScore{
+	display: block;
+	height: 30px;
+	width: 40px;
+	position: absolute;
+	top: 42%;
+	left: 40%;
+	color: #222;
+	font-size: 30px;
+	font-weight: bold;
+	color: green;
+}
+.close{
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	height: 30px;
+	width: 30px;
+	background: #333;
+	color: #fff;
+	border-radius: 50%;
+	text-align: center;
+	line-height: 30px;
+	cursor: pointer;
+}
+
+.food{
+	background-color: red;
+	border-radius: 50%;
+}
+
+.head{
+	background-color: yellow;
+	border-radius: 50%;
+}
+
+.body{
+	background-color: pink;
+	border-radius: 50%;
+}

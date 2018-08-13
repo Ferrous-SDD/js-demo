@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0px;
+				padding: 0px;
+				list-style: none;
+			}
+			
+			#container li,
+			#container1 li {
+				width: 50px;
+				height: 50px;
+				float: left;
+				margin: 5px 3px;
+				background: #eee;
+				text-align: center;
+				line-height: 50px;
+				-webkit-user-select: none;
+			}
+			
+			#container1 li {
+				background: green;
+			}
+			
+			#container li {
+				cursor: pointer;
+			}
+			
+			#container li:hover {
+				background: #ada;
+			}
+			
+			#container li.active {
+				background: red;
+			}
+			
+			.disable {
+				opacity: 0.5;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<input type="text" name="gg" id="gg" value="" style="margin: 100px ;height: 30px;" />
+
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		<script src="js/datepicker-jq.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function() {
+				$("#gg").datepicker()
+			})
+		</script>
+
+	</body>
+
+</html>

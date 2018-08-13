@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>电商分类页效果</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.wrapper{
+			width: 800px;
+			height: 400px;
+			border: 1px solid red;
+		}
+		.wrapper ul{
+			width: 250px;
+			height: 100%;
+			border: 1px solid red;
+			position: relative;
+		}
+		.wrapper ul li{
+			width: 250px;
+			height: 50px;
+			background-color: purple;
+			cursor: pointer;
+			text-align: center;
+			line-height: 50px;
+			color: #fff;
+		}
+		.wrapper ul li .layer{
+			position: absolute;
+			top: 0;
+			left: 250px;
+			background-color: #f40;
+			width: 500px;
+			height: 400px;
+			display: none;
+		}
+		.wrapper ul li.active:hover .layer{
+			display: block;
+		}
+		.wrapper ul li.active:hover{
+			background-color: green;
+		}
+		.del{
+			display: block;
+			width: 30px;
+			height: 30px;
+			background-color: #fff;
+			text-align: center;
+			line-height: 30px;
+			color: #000;
+			border-radius: 50%;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="wrapper">
+		<ul>
+			<li>
+				<div class="title">电脑</div>
+				<div class="layer">
+					111111111111111111
+					<span class="del">X</span>
+				</div>
+			</li>
+			<li>
+				<div class="title">手机</div>
+				<div class="layer">
+					222222222222222222
+					<span class="del">X</span>
+				</div>
+			</li>
+			<li>
+				<div class="title">平板</div>
+				<div class="layer">
+					333333333333333333
+					<span class="del">X</span>
+				</div>
+			</li>
+			<li>
+				<div class="title">单反</div>
+				<div class="layer">
+					4444444444444444444
+					<span class="del">X</span>
+				</div>
+			</li>
+			<li>
+				<div class="title">数码相机</div>
+				<div class="layer">
+					55555555555555555
+					<span class="del">X</span>
+				</div>
+			</li>
+			<li>
+				<div class="title">智能设备</div>
+				<div class="layer">
+					66666666666666666
+					<span class="del">X</span>
+				</div>
+			</li>
+			<li>
+				<div class="title">手表</div>
+				<div class="layer">
+					77777777777777777
+					<span class="del">X</span>
+				</div>
+			</li>
+			<li>
+				<div class="title">电脑</div>
+				<div class="layer">
+					88888888888888888
+					<span class="del">X</span>
+				</div>
+			</li>
+		</ul>
+	</div>
+
+	<script src="jquery-3.3.1.min.js"></script>
+	<script>
+		$(function() {
+
+			$(".wrapper ul li").hover(function() {
+
+				var index = $(this).index();
+				$(".wrapper ul li").eq(index).addClass("active").siblings().removeClass("active");
+
+			})
+
+			$(".del").click(function() {
+				$(this).parent().parent().removeClass("active");
+			})
+
+
+
+
+		})
+		
+
+	</script>
+</body>
+</html>

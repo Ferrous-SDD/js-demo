@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>弹幕</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+		body{
+			background: rgb(31,33,38);
+			color: #c2b483;
+		}
+		.wrapper{
+			width: 90%;
+			margin: 30px auto;
+			/*border: 1px solid red;
+			height: 300px;*/
+		}
+		.barrage{
+			width: 80%;
+			height: 500px;
+			margin: 30px auto;
+			border: 1px solid #c2b483;
+			background: url(1.jpg) no-repeat center center;
+			background-size: 100% 100%;
+			position: relative;
+			overflow: hidden;
+		}
+		.barrage span{
+			font-size: 18px;
+			font-weight: bolder;
+			top: 10px;
+			right: 0px;
+			position: absolute;
+			/*transform: translateX(100%);*/
+			animation: move 10s 1 forwards linear;
+		}
+
+		@keyframes move{
+			to {
+				right: 110%;
+				transform: translateX(-200%);
+			}
+		}
+
+		.inp{
+			width: 50%;
+			height: 30px;
+			margin: 20px auto 0;
+			display: block;
+			line-height: 30px;
+			text-align: center;
+			border-radius: 5px;
+			background: #050c1e;
+			color: #c2b483;
+			font-size: 16px;
+			outline: none;
+		}
+		input::-webkit-input-placeholder{
+			color: #c2b483;
+		}
+
+		ul{
+			margin: 20px auto 0;
+			width: 40%;
+		}
+		ul li{
+			width: 35%;
+			float: left;
+			padding: 3% 5%;
+			margin: 0 3% 0 1%;
+			border: 1px solid #c2b483;
+			text-align: center;
+			background: #1f2126;
+			transition: .5s;
+			cursor: pointer;
+		}
+
+		li:hover{
+			color: #1f2126;
+			background: #c2b483;
+			border-color: transparent;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrapper">
+		<div class="barrage"></div>
+		<input type="text" class="inp" placeholder="你想说点啥！！！">
+		<ul class="btn">
+			<li id="send">发送</li>
+			<li id="clear">清除</li>
+		</ul>
+	</div>
+	<script src="jquery-3.3.1.min.js"></script>
+	<script>
+		
+		var index = 0;
+		var timer = null;
+
+		$("#send").click(function() {
+			send();
+		})
+
+
+		$(document).keydown(function(e) {
+			switch(e.keyCode){
+				case 13:
+					send();
+					break;
+				default:
+					break;
+			}
+		})
+
+		function send() {
+			if($('.inp').val() == '') {
+				$('.inp').focus();
+			}else{
+				
+				$(".barrage").append(`<span style="top:${random(20,480)}px;color: rgb(${random(0,255)},${random(0,255)},${random(0,255)});">${$('.inp').val()}</span>`)
+				$(".inp").val('');
+				index++;
+			}
+			if(index > 0 && timer === null) {
+				timer = setInterval(function() {
+					var right = parseInt($(".barrage span").eq(0).css('right'));
+					var result = parseInt($(".barrage").width()*1.1)
+
+					if(right >= result) {
+						$(".barrage span").eq(0).remove();
+						index--;
+					}
+					if(index === 0) {
+						clearInterval(timer);
+					}
+				},20)
+			}
+		}
+
+		$("#clear").click(function() {
+			$(".inp").val('');
+			$(".inp").focus();
+		})
+
+		function random(m,n) {
+			return parseInt(Math.random()*(n - m) + m);
+		}
+	</script>
+</body>
+</html>

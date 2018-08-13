@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>轮播</title>
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .wrapper {
+        width: 344px;
+        height: 440px;
+        margin: 60px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .big {
+        height: 440px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        transition: .5s;
+    }
+
+    .big li {
+        float: left;
+    }
+
+    .dots {
+        height: 15px;
+        position: absolute;
+        bottom: 20px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .dots li {
+        width: 15px;
+        height: 15px;
+        margin: 0 3px;
+        border-radius: 50%;
+        background: #eee;
+        cursor: pointer;
+    }
+
+    .dots li:hover {
+        background: #999;
+    }
+
+    .dots li.active {
+        background: #999;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <ul class="big">
+            <li>
+                <img src="img/z1.jpg">
+            </li>
+            <li>
+                <img src="img/z2.jpg">
+            </li>
+            <li>
+                <img src="img/z3.jpg">
+            </li>
+            <li>
+                <img src="img/z4.jpg">
+            </li>
+            <li>
+                <img src="img/z5.jpg">
+            </li>
+            <li>
+                <img src="img/z6.jpg">
+            </li>
+            <li>
+                <img src="img/z7.jpg">
+            </li>
+            <li>
+                <img src="img/z8.jpg">
+            </li>
+            <li>
+                <img src="img/z9.jpg">
+            </li>
+        </ul>
+        <ul class="dots">
+        </ul>
+    </div>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script>
+    $(function() {
+
+        // 动态设置大盒子的宽
+        var width = 344 * $('.big li').length;
+        $('.big').css('width', `${width}px`);
+
+
+        // 动态添加点
+        var str = "",
+            len = $('.big li').length;
+        for (var i = 0; i < len; i++) {
+            str += "<li class='dot'></li>"
+        }
+        $('.dots').append(str)
+
+        // 动态设置点的位置
+        var dotsWidth = len * 21;
+        $('.dots').css('width', `${dotsWidth}px`);
+        $('.dots').css('left', `calc(50% - ${dotsWidth / 2}px)`);
+
+
+        var index = 0,
+            timer;
+        change();
+        autoplay();
+
+        // 鼠标悬浮停止，并跳到对应图片
+        $(document).on('mouseover', '.dot', function() {
+            clearInterval(timer);
+            index = $(this).index();
+            change();
+        })
+
+        // 鼠标移开，继续轮播
+        $(document).on('mouseout', '.dot', function() {
+            autoplay();
+        })
+
+        // 自动播放
+        function autoplay() {
+            timer = setInterval(function() {
+                index++;
+                judge();
+                change();
+            }, 2000)
+        }
+
+        // 判断移动到最右边时回到第一张
+        function judge() {
+            if (index === len) {
+                index = 0;
+            }
+        }
+
+        // 每次根据索引改变图片位置
+        function change() {
+            $('.big').css('left', `-${index * parseInt($('.big li').css('width'))}px`);
+            $('.dots li').eq(index).addClass('active').siblings().removeClass('active');
+        }
+
+    })
+    </script>
+</body>
+
+</html>

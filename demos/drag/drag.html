@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+
+	<body>
+
+		<button id="test">success</button>
+
+		<button id="test123">-fail-</button>
+
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		<script src="drag-extend.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+
+			$("#test").click(function() {
+				$.msg("操作成功", "温馨提示", true)
+			})
+
+			$("#test123").click(function() {
+				$.msg("操作失败", "温馨提示")
+			})
+		</script>
+
+	</body>
+
+</html>

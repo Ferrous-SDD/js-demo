@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.goodsimg {
+				width: 200px;
+				height: 200px;
+				background-size: 100% 100%;
+			}
+			
+			.item div {
+				float: left;
+				margin: 20px 50px;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<div id="container">
+
+		</div>
+
+		<div id="muban" style="display: none;">
+			<div class="item" style="overflow: hidden;">
+				<div class="goodsimg" style="background-image: url(img/-img-);"></div>
+				<div class="goodstitle">-title-</div>
+				<div class="goodsprice">-price-</div>
+				<div class="goodsprice">-count-</div>
+				<div class="goodsdel">删除</div>
+			</div>
+		</div>
+
+		<script src="js/pack.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			(function() {
+
+				pack.ajax("data/goods.json", function(data) {
+
+					var goodslist = data.goodsList;
+
+					var mygoods = JSON.parse(pack.getCookie("mygoodsid")).mygoods;
+
+					for(var i = 0; i < goodslist.length; i++) {
+
+						for(var j = 0; j < mygoods.length; j++) {
+
+							if(goodslist[i].id === parseInt(mygoods[j].id)) {
+
+								var dv = pack.create("div")
+
+								dv.innerHTML = pack.byId("muban").innerHTML
+									.replace("-img-", goodslist[i].img)
+									.replace("-title-", goodslist[i].title)
+									.replace("-count-", mygoods[j].count)
+									.replace("-price-", goodslist[i].price);
+
+								pack.byId("container").appendChild(dv)
+
+							}
+
+						}
+
+					}
+
+				})
+
+			})()
+		</script>
+
+	</body>
+
+</html>

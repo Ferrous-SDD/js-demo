@@ -1,0 +1,55 @@
+*{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+body{
+	overflow: hidden;
+}
+
+.pages{
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	transition: .5s;
+}
+
+.pages>li{
+	width: 100%;
+}
+
+.pages .page1{
+	background: indianred;
+}
+
+.pages .page2{
+	background: lightgoldenrodyellow;
+}
+.pages .page3{
+	background: gainsboro;
+}
+.pages .page4{
+	background: greenyellow;
+}
+
+.dots{
+	width: 15px;
+	position: fixed;
+	right: 20px;
+}
+
+.dots>li{
+	width: 15px;
+	height: 15px;
+	background: #fff;
+	border-radius: 50%;
+	margin: 5px 0;
+	opacity: .6;
+}
+
+.dots>li.active{
+	background: #333;
+}
+

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0px;
+			}
+			
+			#gg {
+				background: #eee;
+			}
+			
+			#gg.open {
+				transition:background 1s;
+				background: #ada;
+			}
+			
+			#gg #small {
+				transition: 0.5s;
+				transform: translateX(0px)
+			}
+			
+			#gg.open #small {
+				transform: translateX(70px)
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<div id="gg" style="border-radius: 30px;height: 30px;width: 100px;border: 1px solid grey;margin: 100px;cursor: pointer;">
+			<div id="small" style="border-radius: 30px;height: 30px;width: 30px;border: 1px solid grey;background: #fff;">
+
+			</div>
+		</div>
+
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		<script type="text/javascript">
+			$("#gg").click(function() {
+				$("#gg").toggleClass("open")
+			})
+		</script>
+
+	</body>
+
+</html>

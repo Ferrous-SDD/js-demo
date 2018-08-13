@@ -1,0 +1,9 @@
+.tb {
+	width: 100%;
+	height: 500px;
+	border-collapse: collapse;
+}
+
+.tb td {
+	border: 1px solid darkgrey;
+}
