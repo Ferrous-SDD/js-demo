@@ -1,1 +1,1 @@
-# practice-demo
+# js-demo
